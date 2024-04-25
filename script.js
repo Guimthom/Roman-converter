@@ -2,9 +2,8 @@ const numberInput = document.getElementById("number");
 const convertBtn = document.getElementById("convert-btn");
 const result = document.getElementById("output");
 
-
-
 // Fonction de convertisseur
+
 const convertToRoman = (inputNbr) =>{
 const refRomanNbr = [
     {num : "M", value : 1000},
@@ -22,6 +21,8 @@ const refRomanNbr = [
     {num : "I", value : 1}
 ];
 
+// variable qui va venir prendre les refRomanNbr.num 
+
 let romanNbr = "";
 
 for (let i = 0; i < refRomanNbr.length; i++) {
@@ -30,7 +31,7 @@ for (let i = 0; i < refRomanNbr.length; i++) {
       inputNbr -= refRomanNbr[i].value;
     }
   }
-  console.log(romanNbr);
+  return String(romanNbr);
 };
 
 // Vérifier que le champ soit non vide et que ce soit un nombre/chiffre.
@@ -45,10 +46,12 @@ if(!numberInput.value || isNaN(numberInput.value)){
     result.innerHTML = `<p id="result">Please enter a number less than or equal to 3999</p>`;
     return;
 };
-convertToRoman(numberInput.value);
+result.textContent = convertToRoman(numberInput.value);
+numberInput.value = "";
 };
 
 // Intéractions bouton
+
 convertBtn.addEventListener("click",checkUserInput);
 numberInput.addEventListener("keydown", (e) =>{
 if(e.key === "Enter"){
